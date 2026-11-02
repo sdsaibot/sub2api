@@ -30,10 +30,13 @@ const routes: RouteRecordRaw[] = [
   },
 
   // ==================== Public Routes ====================
+  // Personal fork: the public marketing home is not served.
+  // `/` and the legacy `/home` path both redirect to the existing login route.
+  // HomeView.vue stays in the tree so this remains a small, mergeable bypass.
   {
     path: '/home',
     name: 'Home',
-    component: () => import('@/views/HomeView.vue'),
+    redirect: '/login',
     meta: {
       requiresAuth: false,
       title: 'Home'
@@ -189,7 +192,7 @@ const routes: RouteRecordRaw[] = [
   // ==================== User Routes ====================
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/login'
   },
   {
     path: '/dashboard',
@@ -870,7 +873,7 @@ router.beforeEach(async (to, _from, next) => {
             ? authStore.isAdmin
               ? '/admin/dashboard'
               : '/dashboard'
-            : '/home'
+            : '/login'
         )
         return
       }
