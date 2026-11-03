@@ -2,6 +2,8 @@
 # =============================================================================
 # Sub2API Multi-Stage Dockerfile
 # =============================================================================
+# Railway rejects the cache mounts in this file. Use Dockerfile.railway
+# (railway.json sets dockerfilePath) for Railway builds.
 # Stage 1: Build frontend
 # Stage 2: Build Go backend with embedded frontend
 # Stage 3: Final minimal image
